@@ -1,129 +1,79 @@
-# abc_webapp
-abc_webapp_deploy_on_aws
+<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
-# Here we will deploy a php laravel webapp in a ubuntu local machine or aws ec2. 
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
-# Prerequisit - (git, php7.4, mysql-server, composer)
+## About Laravel
 
-#
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-#	 Step 01: (Installing php7.4 on ubuntu 22.04)
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-	$ sudo apt-get update
-	
-	$ sudo apt -y install software-properties-common
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-	$ sudo add-apt-repository ppa:ondrej/php
+## Learning Laravel
 
-	$ sudo apt-get update
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-	$ sudo apt -y install php7.4
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-	$ php -v  (To verify Installation)
+## Laravel Sponsors
 
-	$ sudo apt install -y php7.4-{cli,common,curl,zip,gd,mysql,xml,mbstring,json,intl}
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- [UserInsights](https://userinsights.com)
+- [Fragrantica](https://www.fragrantica.com)
+- [SOFTonSOFA](https://softonsofa.com/)
+- [User10](https://user10.com)
+- [Soumettre.fr](https://soumettre.fr/)
+- [CodeBrisk](https://codebrisk.com)
+- [1Forge](https://1forge.com)
+- [TECPRESSO](https://tecpresso.co.jp/)
+- [Runtime Converter](http://runtimeconverter.com/)
+- [WebL'Agence](https://weblagence.com/)
+- [Invoice Ninja](https://www.invoiceninja.com)
+- [iMi digital](https://www.imi-digital.de/)
+- [Earthlink](https://www.earthlink.ro/)
+- [Steadfast Collective](https://steadfastcollective.com/)
+- [We Are The Robots Inc.](https://watr.mx/)
+- [Understand.io](https://www.understand.io/)
+- [Abdel Elrafa](https://abdelelrafa.com)
+- [Hyper Host](https://hyper.host)
+- [Appoly](https://www.appoly.co.uk)
+- [OP.GG](https://op.gg)
+- [云软科技](http://www.yunruan.ltd/)
 
-#	Step 02: (Install Composer for dependency management)
-	
-	$ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-	  php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
- 	  php composer-setup.php
-	  php -r "unlink('composer-setup.php');"
+## Contributing
 
-	$ php composer.phar --version
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-	$ sudo mv composer.phar /usr/local/bin/composer
+## Code of Conduct
 
-	$ cd /usr/local/bin
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-	$ sudo chomd u+x composer
+## Security Vulnerabilities
 
-	$ composer --version
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-	$ composer init
+## License
 
-
-#	 Step 03: (Installing Mysql-server and create demo database for project)
-
-	$ sudo apt update
-
-	$ sudo apt install mysql-server
-
-	$ sudo systemctl start mysql.service
-
-#	 — Configuring MySQL
-
-	$ sudo mysql
-
-	$ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your-password';
-
-	$ exit
-
-	$ mysql -u root -p
-
-	$ ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket;
-
-#	— Creating a Dedicated MySQL User and Granting Privileges
-
-	$ sudo mysql
-
-	$ mysql -u root -p
-
-	$ CREATE USER 'sammy'@'localhost' IDENTIFIED BY 'password';
-
-	$ GRANT PRIVILEGE ON database.table TO 'username'@'host'; (or)
-
-	$ GRANT ALL PRIVILEGES ON *.* TO 'sammy'@'localhost' WITH GRANT OPTION;
-
-	$ FLUSH PRIVILEGES;
-
-	$ mysql> exit
-
-	$ mysql -u sammy -p
-
-#	— Testing MySQL
-
-	$ systemctl status mysql.service
-
-	$ sudo mysqladmin -p -u sammy version
-
-
-#	Step 04: (Cloning git repo to root directory)
-
-	$ cd /var/www/html
-
-	$ sudo git clone https://gitlab.com/niswapan/abcfan-website.git
-
-	$ sudo mv abcfan-website abc
-
-	$ sudo chmod -R 777 /var/www/html/abc/
-
-	$ cd abc
-
-	$ cp .env.example .env
-	
-	$ sudo nano .env (change the database name as your created database and root user password)
-
-# 	- Configure web server 
-
-	$ cd /etc/apache2/sites-enabled
-
-	$ sudo nano 000-default.conf
-
-	$ paste below texts and save & exit
-	 ServerAdmin webmaster@localhost
-         DocumentRoot /var/www/html/abc/public
-
-         <Directory /var/www/html/abc/public>
-                Options Indexes FollowSymLinks MultiViews
-                AllowOverride All
-                Order allow,deny
-                allow from all
-         </Directory>
-
-	$ sudo a2enmod rewrite
-
-	$ sudo systemctl restart apache2
-
-	
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
